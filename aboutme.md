@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About me - Ivan Shakuta
+title: Ivan
 subtitle: A few bits of information I'm comfortable sharing.
 ---
 
@@ -10,6 +10,12 @@ Hi, my name is Ivan.
 - I’ve worked in various settings: in-office and remotely, for on-site and overseas customers, for large established companies as well as small, fast-paced startups.
 - I've been working remotely since 2015.
 - Over the years, I’ve transitioned through roles as a web developer, software engineer, and currently work as a tech lead.
+- Languages spoken:
+  - English
+  - Ukrainian
+  - Polish 
+  - Russian 
+  - German - Guten Tag! Ich habe keine Ahnung. Auf Wiedersehen! (That’s about the extent of my German.)
 
 ### Current Tech Stack
 - **PHP 8.x**
@@ -22,11 +28,12 @@ Hi, my name is Ivan.
 
 ### Other Technologies
 - During my career, I’ve had opportunities to develop software with:
-    - **Python**
-    - **JavaScript and TypeScript**
+    - **Python** (3.x)
+    - **JavaScript and TypeScript** (client and server side)
     - **Ruby and Rails** (not my strength)
 - I learned **Java** and **C/C++** years ago, though I haven't used them much, except **C** for microcontrollers.
 - I’ve experimented with **Golang** a bit, but my experience is limited.
+- Was once "Certified PHP5 Engineer" :) 
 
 ### My Interests
 - Software development (web, mobile, electronics)
