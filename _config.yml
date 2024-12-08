@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Ivan Dev
+title: Ivan Shakuta
 
 # Your name to show in the footer
 author: Ivan Shakuta
@@ -22,9 +22,8 @@ author: Ivan Shakuta
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://shakuta.dev/"
+    - github: "https://github.com/ishakuta"
+    - linkedin: "https://www.linkedin.com/in/ishakuta/"
 
 ################
 # --- Logo --- #
@@ -87,7 +86,7 @@ rss-description: Something
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: true
+  twitter: false
   facebook: true
   linkedin: true
   vk: false
@@ -109,7 +108,7 @@ feed_show_tags: true
 post_search: true
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
-edit_page_button: true
+edit_page_button: false
 
 # Allow sub-menu items (second-level navigation menu items) to be longer than the top-level menu
 # If this setting is off, then long sub-menu words might get cut off
