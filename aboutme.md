@@ -1,5 +1,6 @@
+---
 layout: page
-title: About Me
+title: About me - Ivan Shakuta
 subtitle: A few bits of information I'm comfortable sharing.
 ---
 
