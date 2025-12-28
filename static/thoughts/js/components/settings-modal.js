@@ -20,6 +20,7 @@ export function openSettings() {
         document.getElementById('githubToken').value = syncSettings.token || '';
         document.getElementById('githubRepo').value = syncSettings.repo || '';
         document.getElementById('githubPath').value = syncSettings.path || 'Daily Notes/{date}.md';
+        document.getElementById('githubBranch').value = syncSettings.branch || 'main';
         document.getElementById('syncMode').value = syncSettings.syncMode || 'auto';
     }
 
@@ -31,8 +32,10 @@ export function openSettings() {
         helpText.innerHTML = '⚠️ Background Sync not supported on this device (iOS/Safari). Auto mode will sync immediately instead.';
     }
 
-    // Show version
-    document.getElementById('versionDisplay').textContent = `Version ${APP_VERSION}`;
+    // Show version with link to commit
+    const versionEl = document.getElementById('versionDisplay');
+    const repoUrl = 'https://github.com/ishakuta/ishakuta.github.io';
+    versionEl.innerHTML = `Version <a href="${repoUrl}/commit/${GIT_HASH}" target="_blank" style="color: var(--accent); text-decoration: none;">${APP_VERSION}</a>`;
 
     modal.classList.add('show');
 }
@@ -46,6 +49,7 @@ export async function saveSettings() {
     const token = document.getElementById('githubToken').value.trim();
     const repo = document.getElementById('githubRepo').value.trim();
     const path = document.getElementById('githubPath').value.trim();
+    const branch = document.getElementById('githubBranch').value.trim() || 'main';
     const syncMode = document.getElementById('syncMode').value;
 
     // Update input mode
@@ -54,7 +58,7 @@ export async function saveSettings() {
 
     // Save sync settings if filled
     if (token && repo && path) {
-        const syncSettings = { token, repo, path, syncMode };
+        const syncSettings = { token, repo, path, branch, syncMode };
         saveSyncSettings(syncSettings);
         updateSyncBanner();
 
