@@ -1,11 +1,20 @@
 // Thought Capture PWA - Service Worker
 // Handles background sync when app is closed
 
-const CACHE_NAME = 'thought-capture-v2'; // Test update
+const CACHE_NAME = 'thought-capture-v3'; // Multi-file architecture
 const ASSETS_TO_CACHE = [
   '/thoughts/',
   '/thoughts/index.html',
-  '/thoughts/manifest.json'
+  '/thoughts/manifest.json',
+  '/thoughts/styles.css',
+  '/thoughts/js/app.js',
+  '/thoughts/js/components/capture-area.js',
+  '/thoughts/js/components/settings-modal.js',
+  '/thoughts/js/components/thoughts-list.js',
+  '/thoughts/js/services/storage.js',
+  '/thoughts/js/services/sync.js',
+  '/thoughts/js/utils/datetime.js',
+  '/thoughts/js/utils/markdown.js'
 ];
 
 // Install event - cache assets
