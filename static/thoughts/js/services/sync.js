@@ -73,7 +73,10 @@ export async function syncFromGitHub(onProgress) {
             }
         });
 
-        // Save merged thoughts
+        // Sort merged thoughts by timestamp (newest first)
+        merged.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        // Save merged and sorted thoughts
         saveThoughts(merged);
 
         console.log(`[Sync] Synced ${githubThoughts.length} thoughts from GitHub`);

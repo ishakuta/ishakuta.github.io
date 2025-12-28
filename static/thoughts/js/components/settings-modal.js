@@ -6,8 +6,7 @@ import { updateInputMode } from './capture-area.js';
 import { generateMarkdownAll, downloadFile } from '../utils/markdown.js';
 import { getThoughts, getUnsyncedCount } from '../services/storage.js';
 import { getToday, getDateFromISO } from '../utils/datetime.js';
-
-const APP_VERSION = '1.0.0';
+import { APP_VERSION, GIT_HASH, BUILD_DATE } from '../version.js';
 
 export function openSettings() {
     const modal = document.getElementById('settingsModal');
