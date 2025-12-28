@@ -1,0 +1,18 @@
+{
+  "name": "thought-capture",
+  "version": "1.0.0",
+  "description": "Thought Capture PWA - Quick thought capture with GitHub sync",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint js/**/*.js",
+    "lint:fix": "eslint js/**/*.js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-plugin-complexity": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,6 +1,7 @@
 // Thought Capture PWA - Main Application
 // Entry point for the application
 
+import './utils/feature-flags.js'; // Initialize feature flags (query params, console API)
 import { initCaptureArea, captureThought } from './components/capture-area.js';
 import { renderThoughtsList } from './components/thoughts-list.js';
 import {

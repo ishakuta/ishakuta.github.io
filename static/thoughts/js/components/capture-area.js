@@ -4,11 +4,12 @@ import { addThought, getSyncSettings, getInputMode, saveInputMode, saveThoughts,
 import { queueSync } from '../services/sync.js';
 import { renderThoughtsList } from './thoughts-list.js';
 import { geocodeThought } from '../services/geocoding.js';
+import { isEnabled } from '../utils/feature-flags.js';
 
 let currentLocation = null;
 let inputMode = 'multiline';
 
-export function initCaptureArea(container, onCaptured) {
+export function initCaptureArea(container) {
     inputMode = getInputMode();
     renderCaptureInput(container);
     requestLocation();
@@ -80,8 +81,8 @@ function requestLocation() {
                     lon: pos.coords.longitude.toFixed(5)
                 };
             },
-            err => {
-                // Location not available
+            () => {
+                // Location not available (permission denied or timeout)
             },
             { enableHighAccuracy: false, timeout: 5000 }
         );
@@ -119,8 +120,8 @@ function captureThought() {
         navigator.vibrate(10);
     }
 
-    // Geocode location (async, non-blocking)
-    if (thought.location) {
+    // Geocode location (async, non-blocking) - EXPERIMENTAL FEATURE
+    if (thought.location && isEnabled('geocoding')) {
         geocodeThought(thought, (updatedThought, locationName) => {
             if (locationName) {
                 // Update thought in storage with location name

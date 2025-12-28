@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true,
+    "serviceworker": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "plugins": ["complexity"],
+  "rules": {
+    "complexity": ["warn", 10],
+    "max-depth": ["warn", 4],
+    "max-lines-per-function": ["warn", {
+      "max": 50,
+      "skipBlankLines": true,
+      "skipComments": true
+    }],
+    "max-nested-callbacks": ["warn", 3],
+    "max-params": ["warn", 4],
+    "no-unused-vars": ["warn", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_"
+    }],
+    "no-console": "off",
+    "semi": ["error", "always"],
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "indent": ["warn", 4, { "SwitchCase": 1 }],
+    "no-var": "error",
+    "prefer-const": "warn",
+    "eqeqeq": ["warn", "always"],
+    "no-eval": "error",
+    "no-implied-eval": "error"
+  }
+}

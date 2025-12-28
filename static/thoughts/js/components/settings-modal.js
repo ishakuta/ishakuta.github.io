@@ -6,7 +6,8 @@ import { updateInputMode } from './capture-area.js';
 import { generateMarkdownAll, downloadFile } from '../utils/markdown.js';
 import { getThoughts, getUnsyncedCount } from '../services/storage.js';
 import { getToday, getDateFromISO } from '../utils/datetime.js';
-import { APP_VERSION, GIT_HASH, BUILD_DATE } from '../version.js';
+import { APP_VERSION, GIT_HASH } from '../version.js';
+import { isExperimentalMode, getExperimentalFeatures, enable as enableFeature, disable as disableFeature } from '../utils/feature-flags.js';
 
 export function openSettings() {
     const modal = document.getElementById('settingsModal');
@@ -37,7 +38,52 @@ export function openSettings() {
     const repoUrl = 'https://github.com/ishakuta/ishakuta.github.io';
     versionEl.innerHTML = `Version <a href="${repoUrl}/commit/${GIT_HASH}" target="_blank" style="color: var(--accent); text-decoration: none;">${APP_VERSION}</a>`;
 
+    // Show experimental features section if experimental mode is enabled
+    const experimentalSection = document.getElementById('experimentalFeaturesSection');
+    if (isExperimentalMode()) {
+        experimentalSection.style.display = 'block';
+        renderExperimentalFeatures();
+    } else {
+        experimentalSection.style.display = 'none';
+    }
+
     modal.classList.add('show');
+}
+
+function renderExperimentalFeatures() {
+    const container = document.getElementById('experimentalFeaturesList');
+    const features = getExperimentalFeatures();
+
+    container.innerHTML = '';
+
+    features.forEach(feature => {
+        const featureDiv = document.createElement('div');
+        featureDiv.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border);';
+
+        const labelDiv = document.createElement('div');
+        labelDiv.style.cssText = 'flex: 1;';
+
+        const nameSpan = document.createElement('div');
+        nameSpan.textContent = feature.name.replace(/_/g, ' ');
+        nameSpan.style.cssText = 'font-size: 13px; font-weight: 500; text-transform: capitalize;';
+
+        const descSpan = document.createElement('div');
+        descSpan.textContent = feature.description;
+        descSpan.style.cssText = 'font-size: 11px; color: var(--muted); margin-top: 2px;';
+
+        labelDiv.appendChild(nameSpan);
+        labelDiv.appendChild(descSpan);
+
+        const toggle = document.createElement('input');
+        toggle.type = 'checkbox';
+        toggle.checked = feature.enabled;
+        toggle.dataset.featureName = feature.name;
+        toggle.style.cssText = 'width: 40px; height: 20px; cursor: pointer;';
+
+        featureDiv.appendChild(labelDiv);
+        featureDiv.appendChild(toggle);
+        container.appendChild(featureDiv);
+    });
 }
 
 export function closeSettings() {
@@ -55,6 +101,19 @@ export async function saveSettings() {
     // Update input mode
     const captureContainer = document.querySelector('.capture-area');
     updateInputMode(newInputMode, captureContainer);
+
+    // Save experimental feature flags if experimental mode is enabled
+    if (isExperimentalMode()) {
+        const featureCheckboxes = document.querySelectorAll('#experimentalFeaturesList input[type="checkbox"]');
+        featureCheckboxes.forEach(checkbox => {
+            const featureName = checkbox.dataset.featureName;
+            if (checkbox.checked) {
+                enableFeature(featureName);
+            } else {
+                disableFeature(featureName);
+            }
+        });
+    }
 
     // Save sync settings if filled
     if (token && repo && path) {

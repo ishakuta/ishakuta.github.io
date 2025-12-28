@@ -6,7 +6,7 @@ const PENDING_GEOCODES_KEY = 'pending_geocodes';
 const RATE_LIMIT_DELAY = 1100; // 1.1 seconds (to stay under 1 req/sec)
 
 let lastRequestTime = 0;
-let geocodeQueue = [];
+const geocodeQueue = [];
 let isProcessing = false;
 
 // Round coordinates to 2 decimal places for caching
@@ -72,6 +72,7 @@ export async function waitForPendingGeocodes(timeout = 10000) {
 }
 
 // Reverse geocode coordinates to location name
+// eslint-disable-next-line complexity -- Geocoding logic requires multiple conditional branches
 async function reverseGeocode(lat, lon) {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
 

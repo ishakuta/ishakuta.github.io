@@ -4,6 +4,7 @@ import { getThoughts, saveThoughts, getSyncSettings, getUnsyncedThoughts, markAl
 import { parseMarkdownThoughts, thoughtToMarkdown } from '../utils/markdown.js';
 import { getToday, getDateFromISO } from '../utils/datetime.js';
 import { hasPendingGeocodes, waitForPendingGeocodes } from './geocoding.js';
+import { isEnabled } from '../utils/feature-flags.js';
 
 export function isBrowserSyncSupported() {
     return 'serviceWorker' in navigator && 'sync' in ServiceWorkerRegistration.prototype;
@@ -11,6 +12,7 @@ export function isBrowserSyncSupported() {
 
 // Fetch today's thoughts from GitHub (two-way sync)
 // TODO: Implement multi-day sync scanning (currently only syncs today)
+// eslint-disable-next-line max-lines-per-function -- Two-way sync logic is inherently multi-step
 export async function syncFromGitHub(onProgress) {
     const syncSettings = getSyncSettings();
     if (!syncSettings) {
@@ -94,6 +96,7 @@ export async function syncFromGitHub(onProgress) {
     }
 }
 
+// eslint-disable-next-line complexity -- Sync logic requires validation, grouping, and error handling
 export async function syncToGitHub(onProgress) {
     const syncSettings = getSyncSettings();
     if (!syncSettings) {
@@ -101,7 +104,7 @@ export async function syncToGitHub(onProgress) {
     }
 
     // Wait for pending geocodes to complete (with 10s timeout)
-    if (hasPendingGeocodes()) {
+    if (isEnabled('geocoding') && hasPendingGeocodes()) {
         console.log('[Sync] Waiting for geocoding to complete...');
         if (onProgress) {
             onProgress({ type: 'waiting_geocoding' });

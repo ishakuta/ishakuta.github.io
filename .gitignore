@@ -19,3 +19,7 @@ ehthumbs.db
 # Development tools
 .claude/
 .vscode/
+
+# Node.js (for Thought Capture PWA linting)
+node_modules/
+package-lock.json
