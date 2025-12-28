@@ -79,6 +79,17 @@ export function downloadFile(filename, content) {
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
+
+    // Append to DOM (required for Firefox and some Windows browsers)
+    a.style.display = 'none';
+    document.body.appendChild(a);
+
+    // Trigger download
     a.click();
-    URL.revokeObjectURL(url);
+
+    // Clean up - delay revocation to ensure download starts
+    setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 100);
 }

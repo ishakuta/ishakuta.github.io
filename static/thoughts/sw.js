@@ -1,7 +1,7 @@
 // Thought Capture PWA - Service Worker
 // Handles background sync when app is closed
 
-const CACHE_NAME = 'thought-capture-fdbf61a'; // Fix: Sort thoughts after merge
+const CACHE_NAME = 'thought-capture-7a03c4a'; // Fix: Sort thoughts after merge
 const ASSETS_TO_CACHE = [
   '/thoughts/',
   '/thoughts/index.html',
