@@ -1,0 +1,94 @@
+baseURL = 'https://shakuta.dev/'
+languageCode = 'en-us'
+title = 'Ivan Shakuta'
+theme = 'PaperMod'
+
+[params]
+  description = "Software Engineer & Tech Enthusiast. Passionate about software development since 2007."
+  author = "Ivan Shakuta"
+
+  # Show reading time
+  ShowReadingTime = true
+
+  # Show share buttons
+  ShowShareButtons = false
+
+  # Show post navigation (next/prev)
+  ShowPostNavLinks = true
+
+  # Show breadcrumbs
+  ShowBreadCrumbs = true
+
+  # Show code copy buttons
+  ShowCodeCopyButtons = true
+
+  # Enable search
+  fuseOpts.minMatchCharLength = 3
+
+  # Home page info
+  [params.homeInfoParams]
+    Title = "Ivan Shakuta"
+    Content = "Software Engineer & Tech Enthusiast. Passionate about software development since 2007."
+
+  # Profile mode (avatar on home page)
+  [params.profileMode]
+    enabled = true
+    title = "Ivan Shakuta"
+    subtitle = "Software Engineer & Tech Enthusiast. Passionate about software development since 2007."
+    imageUrl = "img/avatar-icon.png"
+    imageWidth = 120
+    imageHeight = 120
+    imageTitle = "Ivan Shakuta"
+
+    [[params.profileMode.buttons]]
+      name = "About Me"
+      url = "/about/"
+
+  # Social icons
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/ishakuta"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/ishakuta"
+
+  [[params.socialIcons]]
+    name = "telegram"
+    url = "https://t.me/ishakuta"
+
+# Main menu
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 10
+
+[[menu.main]]
+  name = "Thought Capture"
+  url = "/thoughts/"
+  weight = 20
+
+[[menu.main]]
+  name = "Search"
+  url = "/search/"
+  weight = 30
+
+# Enable search
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Syntax highlighting
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+
+# Copyright
+[params.label]
+  text = "Ivan Shakuta"
+  icon = "img/avatar-icon.png"
+  iconHeight = 35
+
+# Footer
+[params.footer]
+  text = "© 2007-2025 Ivan Shakuta"

@@ -1,0 +1,21 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+
+# Jekyll (legacy)
+_site
+.sass-cache
+.vagrant
+Gemfile.lock
+beautiful-jekyll-theme-*.gem
+
+# general
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea
+
+# Development tools
+.claude/
+.vscode/

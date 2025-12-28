@@ -1,0 +1,21 @@
+{{ define "main" }}
+<main class="main">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="post-title">404 - Page Not Found</h1>
+    </header>
+    <div class="post-content" style="text-align: center;">
+      <p style="font-size: 1.2rem; margin: 2rem 0;">Whoops, this page doesn't exist.</p>
+      <p style="margin-bottom: 2rem;">Move along. (404 error)</p>
+      <div style="margin: 2rem auto; max-width: 600px;">
+        <img src="/img/404-southpark.jpg" alt="Page not found" style="max-width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+      <div style="margin-top: 3rem;">
+        <a href="{{ "/" | relURL }}" class="button" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary); color: var(--theme); border-radius: 4px; text-decoration: none;">
+          Go to Homepage
+        </a>
+      </div>
+    </div>
+  </article>
+</main>
+{{ end }}
