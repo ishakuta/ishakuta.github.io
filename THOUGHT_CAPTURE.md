@@ -487,8 +487,23 @@ Deployed automatically via Hugo build:
 
 ## Future Enhancements
 
+### High Priority
+- [ ] **Feature Flags System** (3-tier approach)
+  - Query param: `?ff=experimental` (hidden for power users)
+  - Console API: `featureFlags.enable('feature-name')`
+  - Settings UI toggle (when experimental mode active)
+- [ ] **Code Quality Tools** (ESLint + complexity plugins)
+  - Cyclomatic complexity tracking (threshold: 10)
+  - Cognitive complexity monitoring (threshold: 15)
+  - Pre-commit hooks for automatic checks
+  - Max function length: 50 lines
+- [ ] **Separate to Private Repo + Git Submodule**
+  - Move webapp to dedicated private repository
+  - Reference as git submodule in this repo
+  - Decouple app deployment from site deployment
+
 ### Planned (TODO)
-- [ ] Two-way sync (download today's thoughts from GitHub)
+- [x] Two-way sync (download today's thoughts from GitHub) ✅
 - [ ] Multi-day sync scanning (currently only today)
 - [ ] Tags support (parse #tags, include in export)
 - [ ] Search/filter thoughts
