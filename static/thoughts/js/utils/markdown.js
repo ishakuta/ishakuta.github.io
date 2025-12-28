@@ -1,12 +1,25 @@
 // Markdown generation and parsing utilities
 
 import { formatTime } from './datetime.js';
+import { getMapsUrl } from './location.js';
 
 export function thoughtToMarkdown(thought) {
     const time = formatTime(thought.timestamp);
-    const locationStr = thought.location
-        ? ` | 📍 [${thought.location.lat}, ${thought.location.lon}](https://www.google.com/maps?q=${thought.location.lat},${thought.location.lon})`
-        : '';
+
+    let locationStr = '';
+    if (thought.location) {
+        const mapsUrl = getMapsUrl(thought.location.lat, thought.location.lon);
+        const coords = `${thought.location.lat}, ${thought.location.lon}`;
+
+        if (thought.location.name) {
+            // Show location name with coords in link
+            locationStr = ` | 📍 ${thought.location.name} | [${coords}](${mapsUrl})`;
+        } else {
+            // Show only coords as link
+            locationStr = ` | 📍 [${coords}](${mapsUrl})`;
+        }
+    }
+
     return `- **${time}**${locationStr}\n  ${thought.text.replace(/\n/g, '\n  ')}`;
 }
 

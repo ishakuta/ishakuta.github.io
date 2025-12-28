@@ -1,8 +1,9 @@
 // Capture area component
 
-import { addThought, getSyncSettings, getInputMode, saveInputMode } from '../services/storage.js';
+import { addThought, getSyncSettings, getInputMode, saveInputMode, saveThoughts, getThoughts } from '../services/storage.js';
 import { queueSync } from '../services/sync.js';
 import { renderThoughtsList } from './thoughts-list.js';
+import { geocodeThought } from '../services/geocoding.js';
 
 let currentLocation = null;
 let inputMode = 'multiline';
@@ -116,6 +117,28 @@ function captureThought() {
     // Haptic feedback
     if ('vibrate' in navigator) {
         navigator.vibrate(10);
+    }
+
+    // Geocode location (async, non-blocking)
+    if (thought.location) {
+        geocodeThought(thought, (updatedThought, locationName) => {
+            if (locationName) {
+                // Update thought in storage with location name
+                const thoughts = getThoughts();
+                const index = thoughts.findIndex(t => t.id === updatedThought.id);
+                if (index !== -1) {
+                    thoughts[index] = updatedThought;
+                    saveThoughts(thoughts);
+
+                    // Re-render list to show location name
+                    if (listContainer) {
+                        renderThoughtsList(listContainer);
+                    }
+
+                    console.log(`[Geocode] Updated thought ${updatedThought.id} with location: ${locationName}`);
+                }
+            }
+        });
     }
 
     // Queue for sync

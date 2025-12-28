@@ -3,6 +3,7 @@
 import { getThoughts, saveThoughts, getSyncSettings, getUnsyncedThoughts, markAllAsSynced } from './storage.js';
 import { parseMarkdownThoughts, thoughtToMarkdown } from '../utils/markdown.js';
 import { getToday, getDateFromISO } from '../utils/datetime.js';
+import { hasPendingGeocodes, waitForPendingGeocodes } from './geocoding.js';
 
 export function isBrowserSyncSupported() {
     return 'serviceWorker' in navigator && 'sync' in ServiceWorkerRegistration.prototype;
@@ -97,6 +98,15 @@ export async function syncToGitHub(onProgress) {
     const syncSettings = getSyncSettings();
     if (!syncSettings) {
         throw new Error('Sync settings not configured');
+    }
+
+    // Wait for pending geocodes to complete (with 10s timeout)
+    if (hasPendingGeocodes()) {
+        console.log('[Sync] Waiting for geocoding to complete...');
+        if (onProgress) {
+            onProgress({ type: 'waiting_geocoding' });
+        }
+        await waitForPendingGeocodes(10000);
     }
 
     const unsynced = getUnsyncedThoughts();
