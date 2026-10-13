@@ -3,53 +3,136 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>kasa — privacy</title>
+<title>kasa — privacy / prywatność</title>
 <style>
-  :root { --bg: #ffffff; --fg: #1a1a1a; --muted: #555; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #e6e6e6; --muted: #aaa; } }
+  :root { --bg: #ffffff; --fg: #1a1a1a; --muted: #555; --line: #ddd; --accent: #5b4bb5; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111; --fg: #e6e6e6; --muted: #aaa; --line: #333; --accent: #b3a6ff; }
+  }
   body { background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, sans-serif;
          max-width: 40rem; margin: 2rem auto; padding: 0 16px; }
-  h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .2rem; } h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+  a { color: var(--accent); }
   p.muted { color: var(--muted); }
+  /* Tabs without JavaScript: a radio button per language. */
+  .tabs > input { position: absolute; opacity: 0; pointer-events: none; }
+  .tabs > label { display: inline-block; padding: .45rem 1rem; margin-right: .25rem; cursor: pointer;
+                  border: 1px solid var(--line); border-bottom: none; border-radius: .5rem .5rem 0 0;
+                  color: var(--muted); }
+  .tabs > input:checked + label { color: var(--fg); font-weight: 600; background: var(--bg);
+                                  border-color: var(--accent); }
+  .tabs > input:focus-visible + label { outline: 2px solid var(--accent); }
+  .panel { display: none; border-top: 1px solid var(--line); padding-top: .5rem; }
+  #tab-en:checked ~ #en, #tab-pl:checked ~ #pl { display: block; }
 </style>
 </head>
 <body>
-<h1>kasa — privacy policy</h1>
-<p class="muted">Last changed 12 October 2026.</p>
+<h1>kasa</h1>
+<p class="muted">Privacy policy · Polityka prywatności</p>
 
-<p>kasa is a personal finance and bookkeeping app. It keeps its data on your
-phone. The developer receives nothing from it.</p>
+<div class="tabs">
+  <input type="radio" name="lang" id="tab-en" checked>
+  <label for="tab-en" lang="en">English</label>
+  <input type="radio" name="lang" id="tab-pl">
+  <label for="tab-pl" lang="pl">Polski</label>
 
-<h2>What the app keeps</h2>
-<p>Your book: bank rows, entries, invoices, tax figures and settings, in the
-app's private storage on your phone, under the phone's screen lock. The
-credentials you enter for the services below are encrypted with a key held by
-the phone's Android Keystore.</p>
+  <section class="panel" id="en" lang="en">
+    <p class="muted">Last changed 13 October 2026.</p>
+    <p>kasa is a personal finance and bookkeeping app. It keeps its data on your
+    phone. The developer receives nothing from it.</p>
 
-<h2>Where data goes</h2>
-<p>Only to the services you connect, when you use them, over HTTPS:</p>
-<ul>
-  <li><b>GoCardless Bank Account Data</b> — to read your own bank accounts, with
-      the consent you give your bank;</li>
-  <li><b>wFirma</b> — your invoices and expenses, with your own keys;</li>
-  <li><b>NBP</b> — the National Bank of Poland's public exchange rates (nothing
-      about you is sent).</li>
-</ul>
-<p>A backup is an encrypted file saved where you choose; the app sends it
-nowhere.</p>
-<p>Each service handles what it receives under its own privacy policy.</p>
+    <h2>What the app keeps</h2>
+    <p>Your book: bank rows, entries, invoices, tax figures and settings, in the
+    app's private storage on your phone, under the phone's screen lock. The
+    credentials you enter for the services below are encrypted with a key held by
+    the phone's Android Keystore.</p>
 
-<h2>What the app does not do</h2>
-<p>No accounts with the developer, no advertising, no analytics, no crash
-reporting, no tracking, and nothing sold or shared. Android's cloud backup is
-off for every file. A phone-to-phone transfer you start copies the book to
-your new phone.</p>
+    <h2>Where data goes</h2>
+    <p>Only to the services you connect, when you use them, over HTTPS:</p>
+    <ul>
+      <li><a href="https://gocardless.com/bank-account-data/">GoCardless Bank Account Data</a>
+          — to read your own bank accounts, with the consent you give your bank
+          (<a href="https://gocardless.com/privacy/account-holders">its privacy notice</a>);</li>
+      <li><a href="https://wfirma.pl/">wFirma</a> — your invoices and expenses, with
+          your own keys (<a href="https://pomoc.wfirma.pl/-polityka-prywatnosci">its privacy policy</a>);</li>
+      <li><a href="https://api.nbp.pl/">NBP</a> — the National Bank of Poland's public
+          exchange rates; nothing about you is sent.</li>
+    </ul>
+    <p>Each service handles what it receives under its own privacy policy. A
+    backup is an encrypted file saved where you choose; the app sends it
+    nowhere.</p>
 
-<h2>Deleting your data</h2>
-<p>Uninstalling the app deletes everything it kept. The developer holds no
-copy.</p>
+    <h2>What the app does not do</h2>
+    <p>No accounts with the developer, no advertising, no analytics, no crash
+    reporting, no tracking, and nothing sold or shared. Android's cloud backup is
+    off for every file. A phone-to-phone transfer you start copies the book to
+    your new phone.</p>
 
-<h2>Contact</h2>
-<p><a href="mailto:hello@mailjar.dev">hello@mailjar.dev</a></p>
+    <h2>Deleting your data</h2>
+    <p>Uninstalling the app deletes everything it kept. The developer holds no
+    copy.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:hello@mailjar.dev">hello@mailjar.dev</a></p>
+  </section>
+
+  <section class="panel" id="pl" lang="pl">
+    <p class="muted">Ostatnia zmiana: 13 października 2026.</p>
+    <p>kasa to aplikacja do finansów osobistych i księgowości. Przechowuje dane
+    na Twoim telefonie. Twórca aplikacji nie otrzymuje od niej żadnych danych.</p>
+
+    <h2>Co przechowuje aplikacja</h2>
+    <p>Twoją księgę: operacje bankowe, zapisy, faktury, dane podatkowe i
+    ustawienia — w prywatnej pamięci aplikacji na telefonie, chronionej blokadą
+    ekranu. Dane logowania do poniższych usług są szyfrowane kluczem
+    przechowywanym w Android Keystore telefonu.</p>
+
+    <h2>Dokąd trafiają dane</h2>
+    <p>Wyłącznie do usług, które sam podłączysz, wtedy gdy z nich korzystasz,
+    przez HTTPS:</p>
+    <ul>
+      <li><a href="https://gocardless.com/bank-account-data/">GoCardless Bank Account Data</a>
+          — odczyt Twoich własnych rachunków bankowych, za zgodą udzieloną Twojemu
+          bankowi (<a href="https://gocardless.com/privacy/account-holders">informacja o prywatności</a>);</li>
+      <li><a href="https://wfirma.pl/">wFirma</a> — Twoje faktury i wydatki, z Twoimi
+          własnymi kluczami (<a href="https://pomoc.wfirma.pl/-polityka-prywatnosci">polityka prywatności</a>);</li>
+      <li><a href="https://api.nbp.pl/">NBP</a> — publiczne kursy walut Narodowego
+          Banku Polskiego; nie są wysyłane żadne dane o Tobie.</li>
+    </ul>
+    <p>Każda usługa przetwarza otrzymane dane zgodnie z własną polityką
+    prywatności. Kopia zapasowa to zaszyfrowany plik zapisany tam, gdzie
+    wybierzesz; aplikacja nigdzie go nie wysyła.</p>
+
+    <h2>Czego aplikacja nie robi</h2>
+    <p>Nie ma kont u twórcy, reklam, analityki, raportowania awarii ani
+    śledzenia; niczego nie sprzedaje ani nie udostępnia. Kopia zapasowa Androida
+    w chmurze jest wyłączona dla wszystkich plików. Przeniesienie danych z
+    telefonu na telefon, które sam uruchomisz, kopiuje księgę na nowy telefon.</p>
+
+    <h2>Usuwanie danych</h2>
+    <p>Odinstalowanie aplikacji usuwa wszystko, co przechowywała. Twórca nie ma
+    żadnej kopii.</p>
+
+    <h2>Kontakt</h2>
+    <p><a href="mailto:hello@mailjar.dev">hello@mailjar.dev</a></p>
+  </section>
+</div>
+
+<script>
+  // Opens Polish for a Polish browser; #pl or #en in the link decides first.
+  (function () {
+    var want = location.hash.slice(1) || ((navigator.language || "").toLowerCase().indexOf("pl") === 0 ? "pl" : "en");
+    var tab = document.getElementById("tab-" + want);
+    if (tab) tab.checked = true;
+    document.documentElement.lang = want;
+    document.querySelectorAll(".tabs > input").forEach(function (input) {
+      input.addEventListener("change", function () {
+        var lang = input.id.slice(4);
+        document.documentElement.lang = lang;
+        history.replaceState(null, "", "#" + lang);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
